@@ -1,0 +1,5 @@
+/backend/node_modules
+/frontEnd/node_modules
+/packages/react-frontend/node_modules
+/packages/express-backend/node_modules
+/node_modules
