@@ -1,0 +1,29 @@
+{
+  "name": "poly-commissions",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/seanoyama/poly-commissions#readme",
+  "bugs": {
+    "url": "https://github.com/seanoyama/poly-commissions/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seanoyama/poly-commissions.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "eslint.config.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.4"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
+}
