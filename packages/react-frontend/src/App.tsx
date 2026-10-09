@@ -9,7 +9,26 @@ function App() {
 
   return (
     <>
-      <section id="center">
+      <body className="page">
+        <div className="sidebar">
+        <button>Profile</button>
+        <button>Posts</button>
+        <button>Messages</button>
+        <button>Settings</button>
+      </div>
+      <nav className="navbar">
+        <a>PolyComms</a>
+        <a className="navBarItem">About</a>
+        <a className="navBarItem">Login</a>
+      </nav>
+      <div className="main">
+        
+        <h1>Posts</h1>
+        <div className="postsList"></div>
+      </div>
+      </body>
+      
+      {/* <section id="center">
         <div className="hero">
           <img src={heroImg} className="base" width="170" height="179" alt="" />
           <img src={reactLogo} className="framework" alt="React logo" />
@@ -114,7 +133,7 @@ function App() {
       </section>
 
       <div className="ticks"></div>
-      <section id="spacer"></section>
+      <section id="spacer"></section> */}
     </>
   )
 }

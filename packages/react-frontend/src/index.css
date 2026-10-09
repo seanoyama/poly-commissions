@@ -1,4 +1,80 @@
-:root {
+.page{
+  background-color:#E3A9D6
+}
+
+.navbar{
+  margin-left: 315px;
+  height:40px;
+  display:flex;
+  justify-content: right;
+  align-items: center;
+  position:sticky;
+  top:0;
+  background-color: #273366;
+  overflow: hidden;
+  top: 0;
+  padding-right: 40px;
+}
+.navbar a{
+  float: left;
+  color: #f2f2f2;
+  text-align:center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navbar a.navBarItem:hover{
+  background-color: #ddd;
+  color:black;
+}
+
+/* The sidebar menu */
+.sidebar {
+  height: 100%;
+  width: 315px; /* Set the width of the sidebar */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  background-color: #119EA6; /* Black */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 20px;
+
+}
+
+/* The navigation menu links */
+.sidebar button {
+  margin-left:50px;
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  background-color: #273366;
+  color: #ffffff;
+  display: block;
+  border-radius: 20px;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidebar button:hover {
+  color: #f1f1f1;
+}
+
+/* Style page content */
+.main {
+  margin-left: 315px; /* Same as the width of the sidebar */
+  padding: 0px 10px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+/* :root {
   --text: #6b6375;
   --text-h: #08060d;
   --bg: #fff;
@@ -108,4 +184,4 @@ code {
   line-height: 135%;
   padding: 4px 8px;
   background: var(--code-bg);
-}
+} */
