@@ -2,6 +2,7 @@ import express from "express";
 //import { createClient } from "@supabase/supabase-js";
 //import SUPABASE_URI from ".env";
 import cors from "cors";
+import { supabase } from "./models/supabase.js";
 
 const app = express();
 const port = 8000;
