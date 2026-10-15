@@ -1,118 +1,177 @@
 import express from "express";
-import { createClient } from "@supabase/supabase-js";
-import SUPABASE_URI from ".env";
-//import user from user schema
+//import { createClient } from "@supabase/supabase-js";
+//import SUPABASE_URI from ".env";
+import cors from "cors";
 
 const app = express();
 const port = 8000;
 
-const supabaseUrl = "https://supabase.co";
-const supabaseKey = SUPABASE_URI;
+app.use(cors());
+app.use(express.json());
 
-export const supabase = createClient(supabaseUrl, supabaseKey);
+//const supabaseUrl = "https://supabase.co";
+//const supabaseKey = SUPABASE_URI;
+
+//export const supabase = createClient(supabaseUrl, supabaseKey);
+
+const notFound = (res) => res.status(404).send("Resource not found.");
+const fail = (res, err) => res.status(500).send(`Request failed: ${err.message}`);
 
 app.use(express.json());
 
 app.get("/users", async (req, res) => {
   try {
-    //grab users
-    const { data, error } = await supabase
-      .from("Users")
-      .select("*");
-    res.send(users);
+    const { data, error } = await supabase.from("users").select("*");
+    if (error) throw error;
+    res.send(data);
   } catch (err) {
-    res.status(404).send(`Failed to find: ${err}`);
+    fail(res, err);
   }
 });
 
 app.get("/users/:id", async (req, res) => {
   try {
-    const id = req.query.id;
     const { data, error } = await supabase
-      .from("Users")
-      .select("id");
-    res.send(users);
+      .from("users")
+      .select("*")
+      .eq("id", req.params.id)
+      .maybeSingle();
+    if (error) throw error;
+    data ? res.send(data) : notFound(res);
   } catch (err) {
-    res.status(404).send(`Failed to find: ${err}`);
-  }
-});
-
-app.delete("/users", async (req, res) => {
-  try {
-    //grab id
-    //delete by id
-    res.send(users);
-  } catch (err) {
-    res.status(404).send(`Failed to find: ${err}`);
+    fail(res, err);
   }
 });
 
 app.post("/users", async (req, res) => {
   try {
+    const { email, password, user_name, name, phone, on_campus } = req.body;
+
+    const { data: created, error: authError } = await supabase.auth.admin.createUser({
+      email,
+      password,
+      email_confirm: true,
+    });
+    if (authError) throw authError;
+
     const { data, error } = await supabase
-      .from("Users")
-      .insert([
-        { userName: req.params.userName, id: req.params.id }
-      ])
-      .select();
-    res.send(user);
+      .from("users")
+      .insert({ id: created.user.id, email, user_name, name, phone, on_campus })
+      .select()
+      .single();
+    if (error) {
+      await supabase.auth.admin.deleteUser(created.user.id); // roll back
+      throw error;
+    }
+    res.status(201).send(data);
   } catch (err) {
-    res.status(404).send(`Failed to find: ${err}`);
+    fail(res, err);
   }
 });
 
-app.patch("/users", async (req, res) => {
+app.patch("/users/:id", async (req, res) => {
   try {
-    //patch
-    res.send(users);
+    const { user_name, name, phone, on_campus } = req.body;
+    const { data, error } = await supabase
+      .from("users")
+      .update({ user_name, name, phone, on_campus })
+      .eq("id", req.params.id)
+      .select()
+      .maybeSingle();
+    if (error) throw error;
+    data ? res.send(data) : notFound(res);
   } catch (err) {
-    res.status(404).send(`Failed to find: ${err}`);
+    fail(res, err);
+  }
+});
+
+app.delete("/users/:id", async (req, res) => {
+  try {
+    const { data: user } = await supabase
+      .from("users")
+      .select("id")
+      .eq("id", req.params.id)
+      .maybeSingle();
+    if (!user) return notFound(res);
+
+    const { error } = await supabase.auth.admin.deleteUser(req.params.id);
+    if (error) throw error;
+    res.status(204).send();
+  } catch (err) {
+    fail(res, err);
   }
 });
 
 app.get("/posts", async (req, res) => {
   try {
-    //grab posts
-    res.send(users);
+    const { category, location } = req.query;
+    let query = supabase.from("posts").select("*");
+    if (category) query = query.eq("category", category);
+    if (location) query = query.eq("location", location);
+    const { data, error } = await query;
+    if (error) throw error;
+    res.send(data);
   } catch (err) {
-    res.status(404).send(`Failed to find: ${err}`);
+    fail(res, err);
   }
 });
 
 app.get("/posts/:id", async (req, res) => {
   try {
-    const id = req.query.id;
-    //grab post with id
-    res.send(users);
+    const { data, error } = await supabase
+      .from("posts")
+      .select("*")
+      .eq("id", req.params.id)
+      .maybeSingle();
+    if (error) throw error;
+    data ? res.send(data) : notFound(res);
   } catch (err) {
-    res.status(404).send(`Failed to find: ${err}`);
-  }
-});
-
-app.delete("/posts", async (req, res) => {
-  try {
-    //grab id
-    //delete by id
-    res.send(users);
-  } catch (err) {
-    res.status(404).send(`Failed to find: ${err}`);
+    fail(res, err);
   }
 });
 
 app.post("/posts", async (req, res) => {
   try {
-    //post object
-    res.send(user);
+    const { data, error } = await supabase
+      .from("posts")
+      .insert(req.body)
+      .select()
+      .single();
+    if (error) throw error;
+    res.status(201).send(data);
   } catch (err) {
-    res.status(404).send(`Failed to find: ${err}`);
+    fail(res, err);
   }
 });
 
-app.patch("/posts", async (req, res) => {
+app.patch("/posts/:id", async (req, res) => {
   try {
-    //patch
-    res.send(users);
+    const { data, error } = await supabase
+      .from("posts")
+      .update(req.body)
+      .eq("id", req.params.id)
+      .select()
+      .maybeSingle();
+    if (error) throw error;
+    data ? res.send(data) : notFound(res);
   } catch (err) {
-    res.status(404).send(`Failed to find: ${err}`);
+    fail(res, err);
   }
 });
+
+app.delete("/posts/:id", async (req, res) => {
+  try {
+    const { data, error } = await supabase
+      .from("posts")
+      .delete()
+      .eq("id", req.params.id)
+      .select()
+      .maybeSingle();
+    if (error) throw error;
+    data ? res.status(204).send() : notFound(res);
+  } catch (err) {
+    fail(res, err);
+  }
+});
+
+app.listen(port, () => console.log(`Listening at http://localhost:${port}`));
