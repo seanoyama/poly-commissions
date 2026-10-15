@@ -1,8 +1,8 @@
+import "dotenv/config";
 import express from "express";
-//import { createClient } from "@supabase/supabase-js";
+import { createClient } from "@supabase/supabase-js";
 //import SUPABASE_URI from ".env";
 import cors from "cors";
-import { supabase } from "./models/supabase.js";
 
 const app = express();
 const port = 8000;
@@ -13,7 +13,7 @@ app.use(express.json());
 //const supabaseUrl = "https://supabase.co";
 //const supabaseKey = SUPABASE_URI;
 
-//export const supabase = createClient(supabaseUrl, supabaseKey);
+export const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SECRET_KEY);
 
 const notFound = (res) => res.status(404).send("Resource not found.");
 const fail = (res, err) => res.status(500).send(`Request failed: ${err.message}`);
