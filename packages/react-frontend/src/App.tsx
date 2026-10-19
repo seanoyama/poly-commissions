@@ -10,8 +10,6 @@ import PostsPage from "./pages/PostsPage";
 import { BrowserRouter, Routes, Route } from "react-router";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
       <BrowserRouter>

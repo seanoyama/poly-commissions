@@ -120,10 +120,7 @@ app.delete("/users/:id", async (req, res) => {
 
 app.get("/posts", async (req, res) => {
   try {
-    const { category, location } = req.query;
     let query = supabase.from("posts").select("*");
-    if (category) query = query.eq("category", category);
-    if (location) query = query.eq("location", location);
     const { data, error } = await query;
     if (error) throw error;
     res.send(data);

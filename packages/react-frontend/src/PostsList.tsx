@@ -10,10 +10,6 @@ type Post = {
   image: string;
 };
 
-// type PostResponse = {
-//   posts_list: Post[];
-// };
-
 // url variable in case we go #public
 const url = "http://localhost:8000/posts";
 
@@ -31,7 +27,6 @@ export default function PostsList() {
         return response.json() as Promise<Post[]>;
       })
       .then((data) => {
-        console.log("Data from backend:", data);
         setPosts(data);
       })
       .catch((err: Error) => {
