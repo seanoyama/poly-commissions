@@ -1,32 +1,32 @@
-.page{
-  background-color:#E3A9D6
+.page {
+  background-color: #e3a9d6;
 }
 
-.navbar{
+.navbar {
   margin-left: 315px;
-  height:40px;
-  display:flex;
+  height: 40px;
+  display: flex;
   justify-content: right;
   align-items: center;
-  position:sticky;
-  top:0;
+  position: sticky;
+  top: 0;
   background-color: #273366;
   overflow: hidden;
   top: 0;
   padding-right: 40px;
 }
-.navbar a{
+.navbar a {
   float: left;
   color: #f2f2f2;
-  text-align:center;
+  text-align: center;
   padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;
 }
 
-.navbar a.navBarItem:hover{
+.navbar a.navBarItem:hover {
   background-color: #ddd;
-  color:black;
+  color: black;
 }
 
 /* The sidebar menu */
@@ -37,15 +37,14 @@
   z-index: 1; /* Stay on top */
   top: 0; /* Stay at the top */
   left: 0;
-  background-color: #119EA6; /* Black */
+  background-color: #119ea6; /* Black */
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 20px;
-
 }
 
 /* The navigation menu links */
 .sidebar button {
-  margin-left:50px;
+  margin-left: 50px;
   padding: 6px 8px 6px 16px;
   text-decoration: none;
   font-size: 25px;
@@ -71,8 +70,12 @@
 
 /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
+  .sidenav {
+    padding-top: 15px;
+  }
+  .sidenav a {
+    font-size: 18px;
+  }
 }
 /* :root {
   --text: #6b6375;
