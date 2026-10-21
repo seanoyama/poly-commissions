@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 // import reactLogo from './assets/react.svg'
 // import viteLogo from './assets/vite.svg'
 import "./App.css";
-import PostsList from "./PostsList";
+//import PostsList from "./PostsList";
 import LoginPage from "./pages/LoginPage";
 import MessagesPage from "./pages/MessagesPage";
 import PostsPage from "./pages/PostsPage";
@@ -42,9 +42,9 @@ function App() {
             <Route path="/posts" element={<PostsPage />} />
           </Routes>
 
-          <div className="main">
+          {/* <div className="main">
             <PostsList />
-          </div>
+          </div> */}
         </body>
       </BrowserRouter>
     </>
