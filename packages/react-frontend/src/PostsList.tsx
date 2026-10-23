@@ -10,10 +10,17 @@ type Post = {
   image: string;
 };
 
-// url variable in case we go #public
-const url = "http://localhost:8000/posts";
 
-export default function PostsList() {
+
+
+export default function PostsList(props: any) {
+  const user_id = props.user_id;
+  // url variable in case we go #public
+  let url = "http://localhost:8000/posts";
+  if(user_id){ //if user_id is passed, filter posts by user_id
+    url = url+"?user_id="+user_id;
+    console.log(url);
+  }
   const [posts, setPosts] = useState<Post[]>([]);
   const [error, setError] = useState<string>(""); // unused so far
 
