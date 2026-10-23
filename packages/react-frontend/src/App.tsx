@@ -41,7 +41,7 @@ function App() {
             />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/posts" element={<PostsPage />} />
-            <Route path="/user/:uuid" element={<ProfilePage />} />
+            <Route path="/users/:uuid" element={<ProfilePage />} />
           </Routes>
 
           <div className="main">
