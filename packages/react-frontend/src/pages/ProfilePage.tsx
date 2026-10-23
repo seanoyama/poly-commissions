@@ -36,8 +36,8 @@ export default function ProfilePage(){
   return (
     <div className="main">
       <h1>Profile</h1>
-      <h2>Name: {user.name}</h2>
-      <h2>Contact: {user.email}</h2>      
+      <h2>Name: {user?.name}</h2>
+      <h2>Contact: {user?.email}</h2>      
     </div>
   );
 }
