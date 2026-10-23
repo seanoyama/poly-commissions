@@ -187,6 +187,22 @@ app.delete("/posts/:id", async (req, res) => {
   }
 });
 
+// auth route (SUPABASE AUTH NOT YET IMPLEMENTED!! this does #nothing right now)
+app.post("/auth/login", (req, res) => {
+  const { email, password } = req.body;
+
+  if (typeof email !== "string" || typeof password !== "string") {
+    return res.status(400).json({
+      error: "Email and password are required."
+    });
+  }
+
+  res.status(202).json({
+    message: "Login received. Authentication is not enabled yet.",
+    user: { email }
+  });
+});
+
 app.listen(port, () =>
   console.log(`Listening at http://localhost:${port}`)
 );

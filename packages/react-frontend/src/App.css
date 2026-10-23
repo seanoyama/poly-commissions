@@ -271,4 +271,18 @@
     opacity: 0.7;
     font-size: 14px;
   }
+
+  .loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 320px;
+  }
+
+  .loginForm input,
+  .loginForm button {
+  box-sizing: border-box;
+  padding: 8px;
+  }
+  
 }
