@@ -143,6 +143,7 @@ app.get("/posts/:id", async (req, res) => {
   }
 });
 
+
 app.post("/posts", async (req, res) => {
   try {
     const { data, error } = await supabase
