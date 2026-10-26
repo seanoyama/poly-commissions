@@ -1,10 +1,10 @@
-import "dotenv/config";
 import express from "express";
 import { supabase } from "./utils/supabase.js";
 import cors from "cors";
 
 const app = express();
 const port = 8000;
+const CAL_POLY_EMAIL = /^[^\s@]+@calpoly\.edu$/i;
 
 app.use(cors());
 app.use(express.json());
@@ -12,7 +12,7 @@ app.use(express.json());
 const notFound = (res) =>
   res.status(404).send("Resource not found.");
 const fail = (res, err) =>
-  res.status(500).send(`Request failed: ${err.message}`);
+  res.status(500).json({ error: `Request failed: ${err.message}` });
 
 app.use(express.json());
 
@@ -53,9 +53,28 @@ app.post("/users", async (req, res) => {
       on_campus
     } = req.body;
 
+    if (
+      typeof name !== "string" ||
+      !name.trim() ||
+      typeof email !== "string" ||
+      !email.trim() ||
+      typeof password !== "string" ||
+      !password
+    ) {
+      return res.status(400).json({
+        error: "Name, email, and password are required."
+      });
+    }
+
+    if (!CAL_POLY_EMAIL.test(email.trim())) {
+      return res.status(400).json({
+        error: "Please use your @calpoly.edu email address."
+      });
+    }
+
     const { data: created, error: authError } =
       await supabase.auth.admin.createUser({
-        email,
+        email: email.trim(),
         password,
         email_confirm: true
       });
@@ -65,9 +84,9 @@ app.post("/users", async (req, res) => {
       .from("users")
       .insert({
         id: created.user.id,
-        email,
+        email: email.trim(),
         user_name,
-        name,
+        name: name.trim(),
         phone,
         on_campus
       })

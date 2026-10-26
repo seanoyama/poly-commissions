@@ -1,5 +1,6 @@
 import "./App.css";
 import LoginPage from "./pages/LoginPage";
+import SignupPage from "./pages/SignupPage";
 import MessagesPage from "./pages/MessagesPage";
 import PostsPage from "./pages/PostsPage";
 import { BrowserRouter, Routes, Route } from "react-router";
@@ -46,6 +47,14 @@ function App() {
                 Login
               </button>
             </form>
+
+            <form
+              action="http://localhost:5173/signup"
+              method="get">
+              <button className="navBarItem" type="submit">
+                Sign up
+              </button>
+            </form>
           </nav>
           <Routes>
             <Route
@@ -55,6 +64,10 @@ function App() {
             <Route 
               path="/login" 
               element={<LoginPage />} 
+            />
+            <Route
+              path="/signup"
+              element={<SignupPage />}
             />
             <Route 
               path="/posts" 
