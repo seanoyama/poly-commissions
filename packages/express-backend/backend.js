@@ -13,6 +13,11 @@ const notFound = (res) =>
   res.status(404).send("Resource not found.");
 const fail = (res, err) =>
   res.status(500).json({ error: `Request failed: ${err.message}` });
+const normalizedEmail = (email) => email.trim().toLowerCase();
+const isDuplicateEmailError = (error) =>
+  error?.code === "email_exists" ||
+  error?.status === 422 ||
+  /already (been )?(registered|exists)|duplicate/i.test(error?.message ?? "");
 
 app.use(express.json());
 
@@ -66,7 +71,9 @@ app.post("/users", async (req, res) => {
       });
     }
 
-    if (!CAL_POLY_EMAIL.test(email.trim())) {
+    const normalizedUserEmail = normalizedEmail(email);
+
+    if (!CAL_POLY_EMAIL.test(normalizedUserEmail)) {
       return res.status(400).json({
         error: "Please use your @calpoly.edu email address."
       });
@@ -74,17 +81,24 @@ app.post("/users", async (req, res) => {
 
     const { data: created, error: authError } =
       await supabase.auth.admin.createUser({
-        email: email.trim(),
+        email: normalizedUserEmail,
         password,
         email_confirm: true
       });
-    if (authError) throw authError;
+    if (authError) {
+      if (isDuplicateEmailError(authError)) {
+        return res.status(409).json({
+          error: "An account already exists for this email address."
+        });
+      }
+      throw authError;
+    }
 
     const { data, error } = await supabase
       .from("users")
       .insert({
         id: created.user.id,
-        email: email.trim(),
+        email: normalizedUserEmail,
         user_name,
         name: name.trim(),
         phone,
@@ -206,20 +220,38 @@ app.delete("/posts/:id", async (req, res) => {
   }
 });
 
-// auth route (SUPABASE AUTH NOT YET IMPLEMENTED!! this does #nothing right now)
-app.post("/auth/login", (req, res) => {
+app.post("/auth/login", async (req, res) => {
   const { email, password } = req.body;
 
-  if (typeof email !== "string" || typeof password !== "string") {
+  if (
+    typeof email !== "string" ||
+    !email.trim() ||
+    typeof password !== "string" ||
+    !password
+  ) {
     return res.status(400).json({
       error: "Email and password are required."
     });
   }
 
-  res.status(202).json({
-    message: "Login received. Authentication is not enabled yet.",
-    user: { email }
-  });
+  try {
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: normalizedEmail(email),
+      password
+    });
+
+    if (error || !data.user) {
+      return res.status(401).json({
+        error: "Incorrect email or password."
+      });
+    }
+
+    res.status(200).json({
+      user: { id: data.user.id, email: data.user.email }
+    });
+  } catch (err) {
+    fail(res, err);
+  }
 });
 
 app.listen(port, () =>
