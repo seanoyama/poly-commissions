@@ -153,7 +153,12 @@ app.delete("/users/:id", async (req, res) => {
 
 app.get("/posts", async (req, res) => {
   try {
+    const user_id = req.query.user_id;    
+    // getUsers(name,job).then((result) => res.send({users_list: result})).catch((err) => res.status(err).send());
     let query = supabase.from("posts").select("*");
+    if(user_id){
+      query = query.eq("user_id", user_id);
+    }
     const { data, error } = await query;
     if (error) throw error;
     res.send(data);
@@ -175,6 +180,7 @@ app.get("/posts/:id", async (req, res) => {
     fail(res, err);
   }
 });
+
 
 app.post("/posts", async (req, res) => {
   try {

@@ -3,7 +3,8 @@ import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import MessagesPage from "./pages/MessagesPage";
 import PostsPage from "./pages/PostsPage";
-import { BrowserRouter, Routes, Route } from "react-router";
+import ProfilePage from "./pages/ProfilePage";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
@@ -61,20 +62,14 @@ function App() {
               path="/messages"
               element={<MessagesPage />}
             />
-            <Route 
-              path="/login" 
-              element={<LoginPage />} 
-            />
-            <Route
-              path="/signup"
-              element={<SignupPage />}
-            />
-            <Route 
-              path="/posts" 
-              element={<PostsPage />} 
-            />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/posts" element={<PostsPage />} />
+            <Route path="/users/:uuid" element={<ProfilePage />} />
           </Routes>
 
+          <div className="main">
+            
+          </div>
         </div>
       </BrowserRouter>
     </>
