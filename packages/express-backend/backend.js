@@ -14,8 +14,6 @@ const notFound = (res) =>
 const fail = (res, err) =>
   res.status(500).send(`Request failed: ${err.message}`);
 
-app.use(express.json());
-
 app.get("/users", async (req, res) => {
   try {
     const { data, error } = await supabase
