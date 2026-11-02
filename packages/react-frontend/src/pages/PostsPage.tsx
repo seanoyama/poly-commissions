@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../App.css";
 import PostsList from "../PostsList";
-import PhotoUpload from "../PhotoUpload";
+import PhotoUpload from "../photoUpload";
 
 const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:8000";
 
