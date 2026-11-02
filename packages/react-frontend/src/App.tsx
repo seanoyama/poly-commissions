@@ -14,17 +14,19 @@ function App() {
           <div className="sidebar">
 
             <button>Profile</button>
+            <br></br>
             <form
               action="http://localhost:5173/posts"
               method="get">
               <button>Posts</button>
             </form>
-            
+            <br></br>
             <form
               action="http://localhost:5173/messages"
               method="get">
               <button>Messages</button>
             </form>
+            <br></br>
 
             <button>Settings</button>
 
@@ -63,6 +65,7 @@ function App() {
               element={<MessagesPage />}
             />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/signup" element={<SignupPage />} />
             <Route path="/posts" element={<PostsPage />} />
             <Route path="/users/:uuid" element={<ProfilePage />} />
           </Routes>
