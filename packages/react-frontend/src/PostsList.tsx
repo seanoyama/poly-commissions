@@ -9,9 +9,9 @@ type Post = {
   location: string;
   image: string;
 };
-
 export default function PostsList(props: any) {
   const user_id = props.user_id;
+  const refreshKey = props.refreshKey;
   // url variable in case we go #public
   let url = "http://localhost:8000/posts";
   if (user_id) {
@@ -24,7 +24,7 @@ export default function PostsList(props: any) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    let url = `${API_URL}/posts`;
+    // let url = `${API_URL}/posts`;
     if (user_id) {
       url += `?user_id=${encodeURIComponent(user_id)}`;
     }
