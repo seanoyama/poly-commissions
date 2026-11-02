@@ -3,9 +3,6 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-<<<<<<< HEAD
-export const supabase = createClient(supabaseUrl, supabaseKey);
-=======
 const supabaseUrl =
   process.env.SUPABASE_URL ??
   process.env.REACT_APP_SUPABASE_URL;
@@ -28,4 +25,3 @@ export const supabase = createClient(
     }
   }
 );
->>>>>>> 4407bf77dab9271cacd6a41363dd67e15f81407d
