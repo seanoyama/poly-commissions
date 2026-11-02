@@ -60,7 +60,7 @@ export default function LoginForm() {
 
   return (
     <form className="loginForm" onSubmit={handleSubmit}>
-      <label htmlFor="email">Email</label>
+      <label htmlFor="email">Email </label>
       <input
         id="email"
         name="email"
@@ -70,7 +70,7 @@ export default function LoginForm() {
         disabled={isSubmitting}
       />
 
-      <label htmlFor="password">Password</label>
+      <label htmlFor="password">Password </label>
       <input
         id="password"
         name="password"

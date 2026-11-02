@@ -63,7 +63,7 @@ export default function SignupForm() {
 
   return (
     <form className="loginForm" onSubmit={handleSubmit}>
-      <label htmlFor="name">Name</label>
+      <label htmlFor="name">Name </label>
       <input
         id="name"
         name="name"
@@ -73,7 +73,7 @@ export default function SignupForm() {
         disabled={isSubmitting}
       />
 
-      <label htmlFor="email">Email</label>
+      <label htmlFor="email">Email </label>
       <input
         id="email"
         name="email"
@@ -83,7 +83,7 @@ export default function SignupForm() {
         disabled={isSubmitting}
       />
 
-      <label htmlFor="password">New password</label>
+      <label htmlFor="password">New password </label>
       <input
         id="password"
         name="password"
