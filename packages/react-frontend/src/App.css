@@ -188,6 +188,11 @@
     box-sizing: border-box;
   }
 
+  article.posts-list-card {
+    color: #E9D467;
+    font-family: "consolas", sans-serif;
+  }
+
   .posts-list-header {
     display: flex;
     justify-content: space-between;

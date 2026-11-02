@@ -57,7 +57,8 @@ export default function PostsList({ user_id, refreshKey = 0 }: PostsListProps) {
 
       <section className="posts-list-grid">
         {posts.map((post) => (
-          <article className="posts-list-card" key={post.id}>
+          <div>
+            <article className="posts-list-card" key={post.id}>
             <img
               className="posts-list-image"
               src={post.image}
@@ -72,6 +73,9 @@ export default function PostsList({ user_id, refreshKey = 0 }: PostsListProps) {
               </p>
             </div>
           </article>
+          <br></br>
+          </div>
+                    
         ))}
       </section>
     </div>

@@ -68,21 +68,21 @@ export default function PostsPage() {
     <div className="main">
       <h1>Posts</h1>
 
-      <section>
+      <section className="loginForm">
         <h2>Create a listing</h2>
 
         <form onSubmit={handleSubmit}>
           <label>
-            Title
+            Title 
             <input
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               required
             />
           </label>
-
+          <br></br>
           <label>
-            Price ($)
+            Price ($) 
             <input
               type="number"
               min="0"
@@ -92,9 +92,10 @@ export default function PostsPage() {
               required
             />
           </label>
+          <br></br>
 
           <label>
-            Category
+            Category 
             <select
               value={category}
               onChange={(e) => setCategory(e.target.value)}
@@ -110,9 +111,10 @@ export default function PostsPage() {
               ))}
             </select>
           </label>
+          <br></br>
 
           <label>
-            Location
+            Location 
             <input
               value={location}
               onChange={(e) => setLocation(e.target.value)}
@@ -126,6 +128,7 @@ export default function PostsPage() {
             {submitting ? "Creating..." : "Create listing"}
           </button>
         </form>
+        <br></br>
 
         {error && <p role="alert">{error}</p>}
         {message && <p role="status">{message}</p>}
