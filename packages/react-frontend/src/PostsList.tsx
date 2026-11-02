@@ -20,15 +20,23 @@ export default function PostsList(props: any) {
     console.log(url);
   }
   const [posts, setPosts] = useState<Post[]>([]);
-  const [error, setError] = useState<string>(""); // unused so far
+  const [error, setError] = useState<string>("");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    let url = `${API_URL}/posts`;
+    if (user_id) {
+      url += `?user_id=${encodeURIComponent(user_id)}`;
+    }
+
+    setLoading(true);
+    setError("");
+
     fetch(url)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Could not load posts");
         }
-
         return response.json() as Promise<Post[]>;
       })
       .then((data) => {
@@ -36,12 +44,20 @@ export default function PostsList(props: any) {
       })
       .catch((err: Error) => {
         setError(err.message);
+      })
+      .finally(() => {
+        setLoading(false);
       });
-  }, []);
+  }, [user_id, refreshKey]);
 
   return (
     <div className="posts-lists">
       {error && <p className="error-message">{error}</p>}
+      {loading && posts.length === 0 && <p>Loading...</p>}
+      {!loading && !error && posts.length === 0 && (
+        <p>No posts yet.</p>
+      )}
+
       <section className="posts-list-grid">
         {posts.map((post) => (
           <section className="posts">
