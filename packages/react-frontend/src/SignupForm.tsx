@@ -15,7 +15,9 @@ export default function SignupForm() {
   const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(
+    event: FormEvent<HTMLFormElement>
+  ) {
     event.preventDefault();
     setError("");
     setMessage("");
@@ -41,14 +43,18 @@ export default function SignupForm() {
       const result = (await response.json()) as SignupResponse;
 
       if (!response.ok) {
-        throw new Error(result.error ?? "Unable to create your account.");
+        throw new Error(
+          result.error ?? "Unable to create your account."
+        );
       }
 
       setMessage(`Account created for ${result.name ?? name}.`);
       event.currentTarget.reset();
     } catch (err) {
       setError(
-        err instanceof Error ? err.message : "Unable to create your account."
+        err instanceof Error
+          ? err.message
+          : "Unable to create your account."
       );
     } finally {
       setIsSubmitting(false);
