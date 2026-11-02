@@ -14,7 +14,9 @@ export default function LoginForm() {
   const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(
+    event: FormEvent<HTMLFormElement>
+  ) {
     event.preventDefault();
     setError("");
     setMessage("");
@@ -33,13 +35,20 @@ export default function LoginForm() {
         body: JSON.stringify({ email, password })
       });
 
+      //const { user, session, error } = await supabase.auth.signIn({
+      //email: 'example@email.com',
+      //password: 'example-password',
+      //})
+
       const result = (await response.json()) as LoginResponse;
 
       if (!response.ok) {
         throw new Error(result.error ?? "Unable to log in.");
       }
 
-      setMessage(`Logged in as ${result.user?.email ?? email}.`);
+      setMessage(
+        `Logged in as ${result.user?.email ?? email}.`
+      );
     } catch (err) {
       setError(
         err instanceof Error ? err.message : "Unable to log in."
