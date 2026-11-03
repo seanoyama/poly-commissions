@@ -52,7 +52,7 @@
 }
 
 /* The navigation menu links */
-.sidebar button {
+.sidebar a {
   margin-left: 50px;
   width: 200px;
   padding: 6px 8px 6px 16px;
@@ -68,7 +68,7 @@
 }
 
 /* When you mouse over the navigation links, change their color */
-.sidebar button:hover {
+.sidebar a:hover {
   color: #f1f1f1;
   background-color: #1d274d;
 }
