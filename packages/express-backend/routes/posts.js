@@ -6,7 +6,7 @@ const router = express.Router();
 const notFound = (res) =>
   res.status(404).send("Resource not found.");
 const fail = (res, err) =>
-  res.status(500).send(`Request failed: ${err.message}`);
+  res.status(500).json({ error: `Request failed: ${err.message}` });
 
 router.get("/", async (req, res) => {
   try {
@@ -35,9 +35,16 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
+    const { title, price, category, location, image } = req.body;
     const { data, error } = await supabase
       .from("posts")
-      .insert(req.body)
+      .insert({
+        title,
+        price,
+        category,
+        location,
+        images: image ? [image] : [],
+      })
       .select()
       .single();
     if (error) throw error;

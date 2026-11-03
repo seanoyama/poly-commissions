@@ -9,21 +9,22 @@ type Post = {
   location: string;
   image: string;
 };
-
-type PostsListProps = {
-  user_id?: string;
-  refreshKey?: number;
-};
-
-const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:8000";
-
-export default function PostsList({ user_id, refreshKey = 0 }: PostsListProps) {
+export default function PostsList(props: any) {
+  const user_id = props.user_id;
+  const refreshKey = props.refreshKey;
+  // url variable in case we go #public
+  let url = "http://localhost:8000/posts";
+  if (user_id) {
+    //if user_id is passed, filter posts by user_id
+    url = url + "?user_id=" + user_id;
+    console.log(url);
+  }
   const [posts, setPosts] = useState<Post[]>([]);
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    let url = `${API_URL}/posts`;
+    // let url = `${API_URL}/posts`;
     if (user_id) {
       url += `?user_id=${encodeURIComponent(user_id)}`;
     }
@@ -53,7 +54,9 @@ export default function PostsList({ user_id, refreshKey = 0 }: PostsListProps) {
     <div className="posts-lists">
       {error && <p className="error-message">{error}</p>}
       {loading && posts.length === 0 && <p>Loading...</p>}
-      {!loading && !error && posts.length === 0 && <p>No posts yet.</p>}
+      {!loading && !error && posts.length === 0 && (
+        <p>No posts yet.</p>
+      )}
 
       <section className="posts-list-grid">
         {posts.map((post) => (

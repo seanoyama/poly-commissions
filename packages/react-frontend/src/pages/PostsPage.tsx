@@ -45,7 +45,9 @@ export default function PostsPage() {
 
       if (!response.ok) {
         const data = await response.json().catch(() => null);
-        throw new Error(data?.detail ?? "Could not create listing.");
+        throw new Error(
+  data?.error ?? data?.message ?? data?.detail ?? "Could not create listing."
+);
       }
 
       setTitle("");
