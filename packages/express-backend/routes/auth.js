@@ -51,5 +51,16 @@ router.get("/", async (req, res) => {
     fail(res, err);
   }
 });
+router.get("/user", async (req, res) => {
+  try {
+    // let query = supabase.from("auth.sessions").select("*");
+    let query = supabase.auth.getUser();
+    const { data, error } = await query;
+    if (error) throw error;
+    res.send(data);
+  } catch (err) {
+    fail(res, err);
+  }
+});
 
 export default router;
