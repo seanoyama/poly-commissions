@@ -1,6 +1,6 @@
 TE6: Authentication
 
-We authenticate users by requiring a calpoy.edu domain and using Supabase Auth.
+We authenticate users by requiring a calpoly.edu domain and using Supabase Auth.
 * Users sign up and log in through SignupForm.tsx and LoginForm.tsx in our react-frontend
 * LoginForm.tsx posts the user to our auth.js route in the express-backend
 * auth.js checks credentials using Supabase Auth and signInWithPassword()
