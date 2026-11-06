@@ -17,6 +17,54 @@
   }
 }
 
+/* Navigation */
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+  width: auto;
+  padding: 16px 20px;
+  background-color: 273366;
+  color: white;
+}
+
+.logo {
+  margin: 0;
+}
+
+.nav-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.navbar a {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  letter-spacing: 2px;
+}
+
+.navbar a:hover,
+.navbar a:focus-visible {
+  text-decoration: underline;
+}
+
+/*sidebar*/
+
+.sidebar {
+}
+
 .hero {
   position: relative;
 
@@ -161,6 +209,22 @@
   }
 }
 
+.posts {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 340px);
+  gap: 20px 40px;
+  align-items: start;
+
+  width: auto;
+  max-width: 1000px;
+  margin-bottom: 20px;
+  padding: 28px;
+
+  border: 2px solid black;
+  border-radius: 12px;
+  background-color: white;
+}
+
 .ticks {
   position: relative;
   width: 100%;
@@ -278,16 +342,15 @@
   }
 
   .loginForm {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  max-width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 320px;
   }
 
   .loginForm input,
   .loginForm button {
-  box-sizing: border-box;
-  padding: 8px;
+    box-sizing: border-box;
+    padding: 8px;
   }
-  
 }
