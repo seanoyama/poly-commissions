@@ -1,4 +1,5 @@
 import { supabase } from "../utils/supabase.js";
+import { requireAuth } from "../utils/requireAuth.js";
 import express from "express";
 
 const router = express.Router();
@@ -6,7 +7,7 @@ const router = express.Router();
 const notFound = (res) =>
   res.status(404).send("Resource not found.");
 const fail = (res, err) =>
-  res.status(500).json({ error: `Request failed: ${err.message}` });
+  res.status(500).send(`Request failed: ${err.message}`);
 
 router.get("/", async (req, res) => {
   try {
@@ -33,7 +34,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/", requireAuth, async (req, res) => {
   try {
     const { title, price, category, location, image } = req.body;
     const { data, error } = await supabase
@@ -44,6 +45,7 @@ router.post("/", async (req, res) => {
         category,
         location,
         images: image ? [image] : [],
+        user_id: req.user.id,
       })
       .select()
       .single();

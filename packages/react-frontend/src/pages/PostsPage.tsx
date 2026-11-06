@@ -2,6 +2,7 @@ import { useState } from "react";
 import "../App.css";
 import PostsList from "../PostsList";
 import PhotoUpload from "../photoUpload";
+import { supabase } from "../supabase";
 
 const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:8000";
 
@@ -31,9 +32,20 @@ export default function PostsPage() {
     setSubmitting(true);
 
     try {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+
+      if (!session) {
+        throw new Error("You need to log in to create a listing.");
+      }
+
       const response = await fetch(`${API_URL}/posts`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${session.access_token}`,
+        },
         body: JSON.stringify({
           title,
           price: Number(price),
@@ -46,8 +58,11 @@ export default function PostsPage() {
       if (!response.ok) {
         const data = await response.json().catch(() => null);
         throw new Error(
-  data?.error ?? data?.message ?? data?.detail ?? "Could not create listing."
-);
+          data?.error ??
+            data?.message ??
+            data?.detail ??
+            "Could not create listing."
+        );
       }
 
       setTitle("");
@@ -56,7 +71,7 @@ export default function PostsPage() {
       setLocation("");
       setImage("");
       setMessage("Your listing was created!");
-      setRefreshKey((k) => k + 1); // refetches the list + resets the uploader
+      setRefreshKey((k) => k + 1);
     } catch (err) {
       setError(
         err instanceof Error ? err.message : "Could not create listing."
@@ -75,7 +90,7 @@ export default function PostsPage() {
 
         <form onSubmit={handleSubmit}>
           <label>
-            Title 
+            Title
             <input
               value={title}
               onChange={(e) => setTitle(e.target.value)}
@@ -84,7 +99,7 @@ export default function PostsPage() {
           </label>
           <br></br>
           <label>
-            Price ($) 
+            Price ($)
             <input
               type="number"
               min="0"
@@ -97,26 +112,26 @@ export default function PostsPage() {
           <br></br>
 
           <label>
-            Category 
-            <select
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-              required
-            >
-              <option value="" disabled>
-                Select a category
-              </option>
-              {CATEGORIES.map((c) => (
-                <option key={c} value={c}>
-                  {c}
-                </option>
-              ))}
-            </select>
-          </label>
+  Category
+  <select
+    value={category}
+    onChange={(e) => setCategory(e.target.value)}
+    required
+  >
+    <option value="" disabled>
+      Select a category
+    </option>
+    {CATEGORIES.map((c) => (
+      <option key={c} value={c}>
+        {c}
+      </option>
+    ))}
+  </select>
+</label>
           <br></br>
 
           <label>
-            Location 
+            Location
             <input
               value={location}
               onChange={(e) => setLocation(e.target.value)}
