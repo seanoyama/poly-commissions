@@ -7,7 +7,7 @@ export default function MessagesPage() {
   const { chat_id } = useParams();
   return (
     <div className="main">
-      <h1>Chats</h1>
+      <h1>Messages</h1>
       <ChatsList/>
     </div>
   );
