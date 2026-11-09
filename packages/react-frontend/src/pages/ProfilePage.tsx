@@ -2,8 +2,11 @@ import { useParams } from "react-router-dom";
 import "../App.css";
 import { useEffect, useState } from "react";
 import PostsList from "../PostsList";
+import { useAuth } from "../SessionContext";
 
 export default function ProfilePage(){
+  const { session, user} = useAuth();
+
   type User = {
     id: string;
     name: string;
@@ -16,7 +19,7 @@ export default function ProfilePage(){
   const { uuid } = useParams();
   // make urls by concatenating with user id
   const url = "http://localhost:8000/users/"+(uuid);
-  const [user, getUser] = useState<User>();
+  const [page_user, getUser] = useState<User>();
   useEffect(() => {
       fetch(url)
         .then((response) => {
@@ -33,14 +36,16 @@ export default function ProfilePage(){
           console.log(err);
         });
     }, []);
+
+  if(!session || !user) return <p>Please log in.</p>;
   return (
     <div className="main">
       <h1>Profile</h1>
-      <h2>Name: {user?.name}</h2>
-      <h2>Contact: {user?.email}</h2>
-      <p>hello I am {user?.name} and this is my amazing bio!</p>
+      <h2>Name: {page_user?.name}</h2>
+      <h2>Contact: {page_user?.email}</h2>
+      <p>hello I am {page_user?.name} and this is my amazing bio!</p>
       <br></br>
-      <h2>{user?.name}'s Posts</h2>
+      <h2>{page_user?.name}'s Posts</h2>
       <PostsList user_id={uuid}/>
     </div>
   );

@@ -13,18 +13,14 @@ export default function PostsList(props: any) {
   const user_id = props.user_id;
   const refreshKey = props.refreshKey;
   // url variable in case we go #public
-  let url = "http://localhost:8000/posts";
-  if (user_id) {
-    //if user_id is passed, filter posts by user_id
-    url = url + "?user_id=" + user_id;
-    console.log(url);
-  }
+  let API_URL = "http://localhost:8000";
+  
   const [posts, setPosts] = useState<Post[]>([]);
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // let url = `${API_URL}/posts`;
+    let url = `${API_URL}/posts`;
     if (user_id) {
       url += `?user_id=${encodeURIComponent(user_id)}`;
     }
