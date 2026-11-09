@@ -16,7 +16,6 @@ export default function ProfilePage(){
   const { uuid } = useParams();
   // make urls by concatenating with user id
   const url = "http://localhost:8000/users/"+(uuid);
-  const postsUrl = "http://localhost:8000/posts?user_id="+(uuid);
   const [user, getUser] = useState<User>();
   useEffect(() => {
       fetch(url)
