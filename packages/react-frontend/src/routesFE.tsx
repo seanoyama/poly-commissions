@@ -6,6 +6,7 @@ import ProfilePage from "./pages/ProfilePage";
 import { Routes, Route } from "react-router-dom";
 
 export default function RoutesFE() {
+
   return (
     <Routes>
       <Route path="/messages" element={<MessagesPage />} />
