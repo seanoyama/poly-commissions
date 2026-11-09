@@ -11,6 +11,10 @@ const fail = (res, err) =>
 router.get("/", async (req, res) => {
   try {
     let query = supabase.from("messages").select("*");
+    if(req.query.chat_id){
+      // checks if user is either user_one or user_two of the chats
+      query = query.eq("chat_id",req.query.chat_id);
+    }
     const { data, error } = await query;
     if (error) throw error;
     res.send(data);

@@ -23,8 +23,9 @@ export default function MessagesList(props: any) {
   useEffect(() => {
     let url = `${API_URL}/messages`;
     if (chat_id) {
-      url += `?chat_id=${encodeURIComponent(chat_id)}`;
+      url += "?chat_id="+chat_id;
     }
+    
 
     setLoading(true);
     setError("");

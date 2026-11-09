@@ -1,5 +1,5 @@
 import "../App.css";
-import { useParams } from "react-router";
+import { useParams } from "react-router-dom";
 import MessagesList from "../MessagesList";
 import ChatsList from "../ChatsList";
 
