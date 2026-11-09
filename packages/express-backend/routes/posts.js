@@ -11,7 +11,6 @@ const fail = (res, err) =>
 router.get("/", async (req, res) => {
   try {
     let query = supabase.from("posts").select("*");
-    console.log(req.query.user_id);
     if(req.query.user_id){
       
       query = query.eq("user_id",req.query.user_id);

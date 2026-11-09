@@ -3,8 +3,6 @@ import {useAuth} from "./SessionContext";
 export default function Sidebar() {
   const {session, user} = useAuth();
   let user_url = "http://localhost:5173/users/"+user?.id;
-  if(!session || !user) return <p>Please log in.</p>
-
   return (
     <section className="sidebar">
       <a href={user_url}>Profile</a>
