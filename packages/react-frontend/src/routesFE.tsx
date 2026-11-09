@@ -9,6 +9,7 @@ export default function RoutesFE() {
   return (
     <Routes>
       <Route path="/messages" element={<MessagesPage />} />
+      <Route path="/messages/:chat_id" element={<MessagesPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/posts" element={<PostsPage />} />
       <Route path="/users/:uuid" element={<ProfilePage />} />
