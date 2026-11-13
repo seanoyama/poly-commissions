@@ -19,12 +19,19 @@
   },
   "scripts": {
     "start": "npm run -w react-frontend dev",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run build --workspaces --if-present"
   },
   "devDependencies": {
     "nodemon": "^1.19.4"
   },
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "dependencies": {
+    "@paypal/react-paypal-js": "^10.6.1",
+    "dotenv": "^18.0.9",
+    "express": "^5.3.0",
+    "node-fetch": "^3.3.2"
+  }
 }

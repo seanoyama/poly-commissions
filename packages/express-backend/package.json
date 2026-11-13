@@ -1,22 +1,24 @@
 {
-    "name": "backend",
-    "version": "1.0.0",
-    "description": "",
-    "license": "ISC",
-    "author": "",
-    "type": "module",
-    "main": "backEnd.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "dev": "npx nodemon backend.js",
-        "start": "node backend.js"
-    },
-    "dependencies": {
-        "@supabase/ssr": "^0.12.7",
-        "@supabase/supabase-js": "^2.118.0",
-        "cors": "^2.8.6",
-        "dotenv": "^18.0.8",
-        "express": "^5.2.1",
-        "mongoose": "^9.10.2"
-    }
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "backEnd.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npx nodemon backend.js",
+    "start": "node backend.js",
+    "build": "rm -rf dist && npx tsc -b && echo Done!"
+  },
+  "dependencies": {
+    "@paypal/paypal-server-sdk": "^2.5.0",
+    "@supabase/ssr": "^0.12.7",
+    "@supabase/supabase-js": "^2.118.0",
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.10",
+    "express": "^5.3.0",
+    "mongoose": "^9.10.2"
+  }
 }
