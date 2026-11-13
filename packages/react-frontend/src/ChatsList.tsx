@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import {useAuth} from "./SessionContext";
+import { useAuth } from "./SessionContext";
 
 type Chat = {
   id: string;
@@ -10,7 +10,7 @@ type Chat = {
   created_at: string;
 };
 export default function ChatsList(props: any) {
-  const {session, user} = useAuth();
+  const { session, user } = useAuth();
   const chat_id = props.chat_id;
   const refreshKey = props.refreshKey;
   // url variable in case we go #public
@@ -50,11 +50,8 @@ export default function ChatsList(props: any) {
       });
   }, [chat_id, refreshKey]);
 
-  if(!session || !user) return (
-    <div>
-      Please log in to view your messages.
-    </div>
-  )
+  if (!session || !user)
+    return <div>Please log in to view your messages.</div>;
 
   return (
     <div>
@@ -67,10 +64,12 @@ export default function ChatsList(props: any) {
       <section className="posts-list-grid">
         {chats.map((chat) => (
           <div>
-          <a href={`http://localhost:5173/messages/${chat.id}`}>Chat ID: {chat.id}</a>
-          <br></br>
+            <a
+              href={`http://localhost:5173/messages/${chat.id}`}>
+              Chat ID: {chat.id}
+            </a>
+            <br></br>
           </div>
-                    
         ))}
       </section>
     </div>

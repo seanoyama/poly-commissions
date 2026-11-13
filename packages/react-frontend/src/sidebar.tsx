@@ -1,8 +1,8 @@
-import {useAuth} from "./SessionContext";
+import { useAuth } from "./SessionContext";
 
 export default function Sidebar() {
-  const {session, user} = useAuth();
-  let user_url = "http://localhost:5173/users/"+user?.id;
+  const { user } = useAuth(); //add session
+  const user_url = "http://localhost:5173/users/" + user?.id;
   return (
     <section className="sidebar">
       <a href={user_url}>Profile</a>
