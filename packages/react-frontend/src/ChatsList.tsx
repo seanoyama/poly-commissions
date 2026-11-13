@@ -15,16 +15,19 @@ export default function ChatsList(props: any) {
   const refreshKey = props.refreshKey;
   // url variable in case we go #public
   let API_URL = "http://localhost:8000";
+  let url = `${API_URL}/chats`;
+    console.log(user);
+    if (user) {
+      url += `?user=${encodeURIComponent(user?.id)}`;
+    }
+    console.log(url);
   
   const [chats, setChats] = useState<Chat[]>([]);
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    let url = `${API_URL}/chats`;
-    if (user) {
-      url += `?user=${encodeURIComponent(user?.id)}`;
-    }
+    
 
     setLoading(true);
     setError("");

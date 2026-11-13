@@ -14,7 +14,6 @@ type User = {
 
 export function UserName(props: any){
     const uuid = props.uuid;
-    console.log(uuid);
 
   // make urls by concatenating with user id
   const url = "http://localhost:8000/users/"+(uuid);
