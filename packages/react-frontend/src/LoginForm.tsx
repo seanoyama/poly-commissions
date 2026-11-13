@@ -49,6 +49,7 @@ export default function LoginForm() {
       setMessage(
         `Logged in as ${result.user?.email ?? email}.`
       );
+      // window.location.reload();
     } catch (err) {
       setError(
         err instanceof Error ? err.message : "Unable to log in."

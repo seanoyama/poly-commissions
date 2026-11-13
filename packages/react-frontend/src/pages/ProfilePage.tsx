@@ -37,7 +37,9 @@ export default function ProfilePage(){
         });
     }, []);
 
-  if(!session || !user) return <p>Please log in.</p>;
+  if(!session || !user) return <div className="main">
+    <p>Please log in to view your profile page.</p>
+    </div>
   return (
     <div className="main">
       <h1>Profile</h1>
