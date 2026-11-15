@@ -35,7 +35,7 @@ export default function Profile() {
       });
   }, []);
   return (
-    <div className="main">
+    <>
       <h1>Profile</h1>
       <h2>Name: {user?.name}</h2>
       <h2>Contact: {user?.email}</h2>
@@ -43,6 +43,6 @@ export default function Profile() {
       <br></br>
       <h2>{user?.name}'s Posts</h2>
       <PostsList user_id={uuid} />
-    </div>
+    </>
   );
 }
