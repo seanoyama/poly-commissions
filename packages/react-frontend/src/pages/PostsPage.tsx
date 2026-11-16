@@ -1,6 +1,5 @@
 import Posts from "../posts";
 import "../App.css";
-import Checkout from "../paypal";
 
 export default function PostsPage() {
   return (
