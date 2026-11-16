@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import {UserName} from "./services/userData";
+import {ReadableDate} from "./services/dateConverter";
 
 type Message = {
   id: string;
@@ -10,6 +12,16 @@ type Message = {
   reply_to: string;
   created_at: string;
 };
+
+type User = {
+    id: string;
+    name: string;
+    email: string;
+    phone: string;
+    on_campus: boolean;
+    created_at: string;
+}
+
 export default function MessagesList(props: any) {
   const chat_id = props.chat_id;
   const refreshKey = props.refreshKey;
@@ -25,7 +37,6 @@ export default function MessagesList(props: any) {
     if (chat_id) {
       url += "?chat_id="+chat_id;
     }
-    
 
     setLoading(true);
     setError("");
@@ -59,7 +70,10 @@ export default function MessagesList(props: any) {
       <section className="posts-list-grid">
         {messages.map((message) => (
           <div>
-            {message.user_id}: {message.body}
+            <ReadableDate iso_string={(message.created_at)}/> <br></br>
+            <UserName uuid={(message.user_id)} /> :
+            <br></br>
+             {message.body}
           <br></br>
           <br></br>
           </div>

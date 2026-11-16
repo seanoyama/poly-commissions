@@ -8,7 +8,7 @@ type Post = {
   price: number;
   category: string;
   location: string;
-  image: string;
+  images: string;
 };
 export default function PostsList(props: any) {
   const user_id = props.user_id;
@@ -61,7 +61,7 @@ export default function PostsList(props: any) {
             <article className="posts-list-card" key={post.id}>
               <img
                 className="posts-list-image"
-                src={post.image}
+                src={post.images[0]}
                 alt={post.title}
               />
 
@@ -71,6 +71,11 @@ export default function PostsList(props: any) {
                 <p className="posts-list-details">
                   {post.category} · {post.location}
                 </p>
+                <a
+                  href={`http://localhost:5173/posts/${post.id}`}>
+                  View More
+                </a>
+                
                 <Checkout />
               </div>
             </article>

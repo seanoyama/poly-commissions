@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import { useAuth } from "./SessionContext";
+import {UserName} from "./services/userData";
 
 type Chat = {
   id: string;
@@ -14,17 +15,20 @@ export default function ChatsList(props: any) {
   const chat_id = props.chat_id;
   const refreshKey = props.refreshKey;
   // url variable in case we go #public
-  const API_URL = "http://localhost:8000";
-
+  let API_URL = "http://localhost:8000";
+  let url = `${API_URL}/chats`;
+    console.log(user);
+    if (user) {
+      url += `?user=${encodeURIComponent(user?.id)}`;
+    }
+    console.log(url);
+  
   const [chats, setChats] = useState<Chat[]>([]);
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    let url = `${API_URL}/chats`;
-    if (user) {
-      url += `?user=${encodeURIComponent(user?.id)}`;
-    }
+    
 
     setLoading(true);
     setError("");
@@ -63,7 +67,7 @@ export default function ChatsList(props: any) {
           <div>
             <a
               href={`http://localhost:5173/messages/${chat.id}`}>
-              Chat ID: {chat.id}
+              Chat with <UserName uuid={chat.user_one}/> and <UserName uuid={chat.user_two}/> <br></br>
             </a>
             <br></br>
           </div>
