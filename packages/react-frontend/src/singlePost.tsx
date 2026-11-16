@@ -1,27 +1,27 @@
-import { useEffect, useState} from "react";
-import {UserName} from "./services/userData";
+import { useEffect, useState } from "react";
+import { UserName } from "./services/userData";
 import ChatForm from "./ChatForm";
 
-import {useAuth} from "./SessionContext";
+import { useAuth } from "./SessionContext";
+import Checkout from "./paypal";
 
 // consider having a script that just has a bunch of types we use
 type Post = {
-        id: string;
-        user_id: string;
-        title: string;
-        price: number;
-        category: string;
-        location: string;
-        images: string;
-    };
+  id: string;
+  user_id: string;
+  title: string;
+  price: number;
+  category: string;
+  location: string;
+  images: string;
+};
 
-export default function SinglePost(props:any) {
-    const id = props.id.uuid;
-    const [refreshKey, setRefreshKey] = useState(0);
+export default function SinglePost(props: any) {
+  const id = props.id.uuid;
+  const [refreshKey, setRefreshKey] = useState(0);
 
-    const {user} = useAuth();
+  const { user } = useAuth();
 
-    
   // make urls by concatenating with post id
   const url = "http://localhost:8000/posts/" + id;
   console.log(url);
@@ -44,14 +44,25 @@ export default function SinglePost(props:any) {
   }, []);
   console.log(post?.images[0]);
   return (
-    
     <>
       <h1>Post: {post?.title}</h1>
       <h2>{post?.category}</h2>
       <img src={post?.images[0]}></img>
       <p>Price: {post?.price}</p>
-      <p>Create new chat with <UserName uuid={(post?.user_id)} />:</p>
-      <ChatForm user_one={post?.user_id} user_two={user?.id} post_id={post?.id} onChatCreate={() => setRefreshKey((key) => key + 1)}/>
-      </>
+
+      <p>
+        Create new chat with <UserName uuid={post?.user_id} />:
+      </p>
+
+      <ChatForm
+        user_one={post?.user_id}
+        user_two={user?.id}
+        post_id={post?.id}
+        onChatCreate={() => setRefreshKey((key) => key + 1)}
+      />
+      <section className="paypal">
+        <Checkout />
+      </section>
+    </>
   );
 }

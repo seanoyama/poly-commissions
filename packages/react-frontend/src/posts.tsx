@@ -90,6 +90,7 @@ export default function Posts() {
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               required
+              className="PostEntry"
             />
           </label>
           <br></br>
@@ -102,9 +103,9 @@ export default function Posts() {
               value={price}
               onChange={(e) => setPrice(e.target.value)}
               required
+              className="PostEntry"
             />
           </label>
-          {/* <PayPal /> */}
           <br></br>
           <label>
             Category
@@ -129,10 +130,14 @@ export default function Posts() {
               value={location}
               onChange={(e) => setLocation(e.target.value)}
               required
+              className="PostEntry"
             />
           </label>
           <PhotoUpload key={refreshKey} onUpload={setImage} />
-          <button type="submit" disabled={submitting || !image}>
+          <button
+            type="submit"
+            disabled={submitting || !image}
+            className="PostButton">
             {submitting ? "Creating..." : "Create listing"}
           </button>
         </form>
