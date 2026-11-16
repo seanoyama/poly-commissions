@@ -62,7 +62,7 @@ export default function SignupForm() {
   }
 
   return (
-    <form className="loginForm" onSubmit={handleSubmit}>
+    <form className="LoginForm" onSubmit={handleSubmit}>
       <label htmlFor="name">Name </label>
       <input
         id="name"
@@ -71,6 +71,7 @@ export default function SignupForm() {
         autoComplete="name"
         required
         disabled={isSubmitting}
+        className="LoginEntry"
       />
 
       <label htmlFor="email">Email </label>
@@ -81,6 +82,7 @@ export default function SignupForm() {
         autoComplete="email"
         required
         disabled={isSubmitting}
+        className="LoginEntry"
       />
 
       <label htmlFor="password">New password </label>
@@ -91,12 +93,16 @@ export default function SignupForm() {
         autoComplete="new-password"
         required
         disabled={isSubmitting}
+        className="LoginEntry"
       />
 
       {error && <p role="alert">{error}</p>}
       {message && <p>{message}</p>}
 
-      <button type="submit" disabled={isSubmitting}>
+      <button
+        type="submit"
+        disabled={isSubmitting}
+        className="LoginButton">
         {isSubmitting ? "Creating account..." : "Sign up"}
       </button>
     </form>
