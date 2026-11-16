@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import { useAuth } from "./SessionContext";
+import {UserName} from "./services/userData";
 
 type Chat = {
   id: string;
@@ -66,7 +67,7 @@ export default function ChatsList(props: any) {
           <div>
             <a
               href={`http://localhost:5173/messages/${chat.id}`}>
-              Chat ID: {chat.id}
+              Chat with <UserName uuid={chat.user_one}/> and <UserName uuid={chat.user_two}/> <br></br>
             </a>
             <br></br>
           </div>
