@@ -5,3 +5,6 @@ We authenticate users by requiring a calpoly.edu domain and using Supabase Auth.
 * LoginForm.tsx posts the user to our auth.js route in the express-backend
 * auth.js checks credentials using Supabase Auth and signInWithPassword()
 * supabase.js in the express-backend creates a client that auth.js then uses to create a token and time-limited session
+
+TE7: Testing
+
