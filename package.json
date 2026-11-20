@@ -19,11 +19,14 @@
   },
   "scripts": {
     "start": "npm run -w react-frontend dev",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:backend": "vitest",
+    "test:run-backend": "vitest run",
     "build": "npm run build --workspaces --if-present"
   },
   "devDependencies": {
-    "nodemon": "^1.19.4"
+    "nodemon": "^1.19.4",
+    "supertest": "^7.3.2",
+    "vitest": "^5.1.1"
   },
   "workspaces": [
     "packages/*"
