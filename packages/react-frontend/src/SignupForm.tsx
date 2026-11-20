@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from "react";
 
-const API_URL = "http://localhost:8000";
+import {API_URL} from "./constants"
 const CAL_POLY_EMAIL = /^[^\s@]+@calpoly\.edu$/i;
 
 type SignupResponse = {

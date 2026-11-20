@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import PostsList from "./PostsList";
+import { API_URL } from "./constants"
 
 export default function Profile() {
   type User = {
@@ -14,9 +15,10 @@ export default function Profile() {
 
   const { uuid } = useParams();
   // make urls by concatenating with user id
-  const url = "http://localhost:8000/users/" + uuid;
+
+  const url = API_URL + uuid;
   // const postsUrl =
-  //   "http://localhost:8000/posts?user_id=" + uuid;
+    // "http://localhost:8000/posts?user_id=" + uuid;
   const [user, getUser] = useState<User>();
   useEffect(() => {
     fetch(url)

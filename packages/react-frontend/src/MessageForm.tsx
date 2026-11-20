@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from "react";
-
+import {API_URL} from "./constants"
 type Message = {
   id: string;
   chat_id: string;
@@ -18,7 +18,7 @@ type MessageFormProps = {
   onMessageSent: () => void;
 };
 
-const url = "http://localhost:8000/messages";
+const url = API_URL+"messages";
 
 export default function MessageForm({
   chat_id,

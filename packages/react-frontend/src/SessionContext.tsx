@@ -8,6 +8,7 @@ import {
 
 import "./App.css";
 import type { Session, User } from "@supabase/supabase-js";
+import {API_URL} from "./constants"
 
 type AuthContextValue = {
   session: Session | undefined;
@@ -25,7 +26,7 @@ export function AuthProvider({
 }) {
   type SessionResponse = { session: Session };
 
-  const url = "http://localhost:8000/auth/";
+  const url = `${API_URL}/auth/`;
   const [session, setSession] = useState<Session>();
   useEffect(() => {
     fetch(url)

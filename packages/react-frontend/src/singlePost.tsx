@@ -3,6 +3,7 @@ import {UserName} from "./services/userData";
 import ChatForm from "./ChatForm";
 
 import {useAuth} from "./SessionContext";
+import {API_URL} from "./constants"
 
 // consider having a script that just has a bunch of types we use
 type Post = {
@@ -23,7 +24,7 @@ export default function SinglePost(props:any) {
 
     
   // make urls by concatenating with post id
-  const url = "http://localhost:8000/posts/" + id;
+  const url = API_URL + id;
   console.log(url);
   const [post, getPost] = useState<Post>();
   useEffect(() => {
