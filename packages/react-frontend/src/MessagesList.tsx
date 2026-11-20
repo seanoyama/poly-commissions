@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import {UserName} from "./services/userData";
 import {ReadableDate} from "./services/dateConverter";
+import {API_URL} from "./constants"
 
 type Message = {
   id: string;
@@ -13,20 +14,11 @@ type Message = {
   created_at: string;
 };
 
-type User = {
-    id: string;
-    name: string;
-    email: string;
-    phone: string;
-    on_campus: boolean;
-    created_at: string;
-}
-
 export default function MessagesList(props: any) {
   const chat_id = props.chat_id;
   const refreshKey = props.refreshKey;
   // url variable in case we go #public
-  let API_URL = "http://localhost:8000";
+  // let API_URL = "http://localhost:8000";
   
   const [messages, setMessages] = useState<Message[]>([]);
   const [error, setError] = useState<string>("");

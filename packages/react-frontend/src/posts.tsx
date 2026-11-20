@@ -4,8 +4,9 @@ import PostsList from "./PostsList";
 import PhotoUpload from "./photoUpload";
 //import PayPal from "../paypal.";
 
-const API_URL =
-  import.meta.env.VITE_API_URL ?? "http://localhost:8000";
+import {API_URL} from "./constants"
+// const API_URL =
+//   import.meta.env.VITE_API_URL ?? "http://localhost:8000";
 
 const CATEGORIES = [
   "Furniture",

@@ -3,6 +3,7 @@ import {
   PayPalScriptProvider,
   PayPalButtons
 } from "@paypal/react-paypal-js";
+import {API_URL} from "./constants";
 
 export default function Checkout() {
   const [message, setMessage] = useState("");
@@ -16,7 +17,7 @@ export default function Checkout() {
   // Calls Express backend to create the PayPal order
   const handleCreateOrder = async () => {
     const response = await fetch(
-      "http://localhost:8000/api/orders",
+      `${API_URL}/api/orders`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },

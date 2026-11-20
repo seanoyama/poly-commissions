@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from "react";
 
-const API_URL = "http://localhost:8000";
+import {API_URL} from "./constants"
 const CAL_POLY_EMAIL = /^[^\s@]+@calpoly\.edu$/i;
 
 type SignupResponse = {
@@ -72,6 +72,7 @@ export default function SignupForm() {
         required
         disabled={isSubmitting}
         className="LoginEntry"
+        placeholder="e.g. Jeffrey Mustang"
       />
 
       <label htmlFor="email">Email </label>
@@ -83,6 +84,7 @@ export default function SignupForm() {
         required
         disabled={isSubmitting}
         className="LoginEntry"
+        placeholder="e.g. jeffreym@calpoly.edu"
       />
 
       <label htmlFor="password">New password </label>

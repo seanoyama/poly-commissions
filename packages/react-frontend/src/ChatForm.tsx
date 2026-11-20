@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from "react";
-
+import {API_URL} from "./constants";
 type Chat = {
   id: string;
   user_one: string;
@@ -17,7 +17,7 @@ type ChatFormProps = {
   onChatCreate: () => void;
 };
 
-const url = "http://localhost:8000/chats";
+const url = `${API_URL}/chats`;
 
 export default function ChatForm({
   user_one,
@@ -65,6 +65,7 @@ export default function ChatForm({
 
     return (
         <form onSubmit={handleSubmit}>
+        {error && <p className="error-message">{error}</p>}
         <label>Create Chat: </label>
         <button type="submit" disabled={isSubmitting || !user_one || !user_two || !post_id}>
             {isSubmitting ? "Creating..." : "Create"}

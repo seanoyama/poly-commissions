@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { UserName } from "./services/userData";
 import ChatForm from "./ChatForm";
 
-import { useAuth } from "./SessionContext";
+import {useAuth} from "./SessionContext";
+import {API_URL} from "./constants"
 import Checkout from "./paypal";
 
 // consider having a script that just has a bunch of types we use
@@ -23,7 +24,7 @@ export default function SinglePost(props: any) {
   const { user } = useAuth();
 
   // make urls by concatenating with post id
-  const url = "http://localhost:8000/posts/" + id;
+  const url = `${API_URL}/posts/${id}`;
   console.log(url);
   const [post, getPost] = useState<Post>();
   useEffect(() => {
@@ -41,7 +42,7 @@ export default function SinglePost(props: any) {
       .catch((err: Error) => {
         console.log(err);
       });
-  }, []);
+  }, [refreshKey]);
   console.log(post?.images[0]);
   return (
     <>

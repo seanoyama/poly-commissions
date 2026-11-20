@@ -3,6 +3,8 @@ import "./App.css";
 import { useAuth } from "./SessionContext";
 import {UserName} from "./services/userData";
 
+import {API_URL} from "./constants"
+
 type Chat = {
   id: string;
   user_one: string;
@@ -15,7 +17,7 @@ export default function ChatsList(props: any) {
   const chat_id = props.chat_id;
   const refreshKey = props.refreshKey;
   // url variable in case we go #public
-  let API_URL = "http://localhost:8000";
+  // let API_URL = "http://localhost:8000";
   let url = `${API_URL}/chats`;
     console.log(user);
     if (user) {
