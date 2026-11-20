@@ -76,8 +76,6 @@ export default function PostsList(props: any) {
                   href={`http://localhost:5173/posts/${post.id}`}>
                   View More
                 </a>
-                
-                <Checkout />
               </div>
             </article>
             <br></br>
