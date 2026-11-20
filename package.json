@@ -19,7 +19,7 @@
   },
   "scripts": {
     "start": "npm run -w react-frontend dev",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js",
     "build": "npm run build --workspaces --if-present"
   },
   "devDependencies": {
