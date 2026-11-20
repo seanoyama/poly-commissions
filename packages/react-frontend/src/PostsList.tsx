@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import Checkout from "./paypal";
+import { API_URL } from "./constants"
 
 type Post = {
   id: string;
@@ -13,7 +15,7 @@ export default function PostsList(props: any) {
   const user_id = props.user_id;
   const refreshKey = props.refreshKey;
   // url variable in case we go #public
-  let API_URL = "http://localhost:8000";
+  // let API_URL = "http://localhost:8000";
 
   const [posts, setPosts] = useState<Post[]>([]);
   const [error, setError] = useState<string>("");

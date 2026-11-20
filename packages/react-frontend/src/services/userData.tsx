@@ -1,6 +1,5 @@
 import "../App.css";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 
 type User = {
     id: string;
