@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test": "node --experimental-vm-modules ../../node_modules/jest/bin/jest.js --config jest-config.cjs"
+    "unit-test": "node --experimental-vm-modules ../../node_modules/jest/bin/jest.js --config jest-config.cjs"
   },
   "dependencies": {
     "@paypal/react-paypal-js": "^10.6.1",
