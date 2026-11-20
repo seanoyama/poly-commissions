@@ -14,23 +14,33 @@ using Supabase Auth.
 
 **TE7: Testing**
 
-- <u>Systems tests</u> use Vitest for comparing expected values and
-  mocking db, and Supertest for request functionality. Systems
-  tests focus on ensuring the system works as a whole and meets
-  functional and nonfunctional requirements. At the moment, we
-  chose to focus on functional requirements and tested our API
-  endpoints.
-  
-- <u>Unit tests</u> use Jest in both the frontend and backend (frontend Jest converts TypeScript to JavaScript for testing)
+- <u>Systems tests</u> use Vitest for comparing expected values
+  and mocking db, and Supertest for request functionality.
+  Systems tests focus on ensuring the system works as a whole
+  and meets functional and nonfunctional requirements. At the
+  moment, we chose to focus on functional requirements and
+  tested our API endpoints.
+  - To tun System Tests:
+  - ```
+    npm run test:run-backend
+    ```
+- <u>Unit tests</u> use Jest in both the frontend and backend
+  (frontend Jest converts TypeScript to JavaScript for testing)
   - Dependencies:
     - "npm install -D vitest"
     - "npm install -D supertest"
     - "npm install --save-dev jest"
-    - "npm.cmd install -D -w react-frontend jest ts-jest @jest/globals"
+    - "npm.cmd install -D -w react-frontend jest ts-jest
+      @jest/globals"
   - Run backend tests with "npm run tests:run-backend"
-  - Run unit tests in both react-frontend folder and express-backend folder with "npm run unit-test"
+  - Run unit tests in both react-frontend folder and
+    express-backend folder with "npm run unit-test"
 
-- <u>End-to-End tests</u> utilize Playwright with Typescript and simulates the user experience, making sure frontend and backend elements are interacting in a functional way for a realistic user. Test files are located in `/packages/react-frontend/e2e-tests`.
+- <u>End-to-End tests</u> utilize Playwright with Typescript and
+  simulates the user experience, making sure frontend and
+  backend elements are interacting in a functional way for a
+  realistic user. Test files are located in
+  `/packages/react-frontend/e2e-tests`.
   - Dependencies:
     - ```
       npm install -D @playwright/test@latest
@@ -40,4 +50,5 @@ using Supabase Auth.
     - ```
       npx playwright test --ui
       ```
-    - The command will open a Playwright window which will allow you to press the Run button to execute tests.
+    - The command will open a Playwright window which will allow
+      you to press the Run button to execute tests.
