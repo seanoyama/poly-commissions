@@ -24,7 +24,7 @@ export default function SinglePost(props:any) {
 
     
   // make urls by concatenating with post id
-  const url = API_URL + id;
+  const url = `${API_URL}/posts/${id}`;
   console.log(url);
   const [post, getPost] = useState<Post>();
   useEffect(() => {

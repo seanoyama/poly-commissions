@@ -72,6 +72,7 @@ export default function SignupForm() {
         required
         disabled={isSubmitting}
         className="LoginEntry"
+        placeholder="e.g. Jeffrey Mustang"
       />
 
       <label htmlFor="email">Email </label>
@@ -83,6 +84,7 @@ export default function SignupForm() {
         required
         disabled={isSubmitting}
         className="LoginEntry"
+        placeholder="e.g. jeffreym@calpoly.edu"
       />
 
       <label htmlFor="password">New password </label>

@@ -16,7 +16,7 @@ export default function Profile() {
   const { uuid } = useParams();
   // make urls by concatenating with user id
 
-  const url = API_URL + uuid;
+  const url = `${API_URL}/users/${uuid}`;
   // const postsUrl =
     // "http://localhost:8000/posts?user_id=" + uuid;
   const [user, getUser] = useState<User>();
