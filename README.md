@@ -1,4 +1,4 @@
-**TE6: Authentication
+**TE6: Authentication**
 
 We authenticate users by requiring a calpoly.edu domain and
 using Supabase Auth.
