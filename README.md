@@ -28,3 +28,15 @@ TE7: Testing
   - "npm.cmd install -D -w react-frontend jest ts-jest @jest/globals"
 - Run backend tests with "npm run tests:run-backend"
 - Run unit tests in both react-frontend folder and express-backend folder with "npm run unit-test"
+
+- End-to-End tests utilize Playwright with Typescript and simulates the user experience, making sure frontend and backend elements are interacting in a functional way for a realistic user. Test files are located in `/packages/react-frontend/e2e-tests`.
+- Dependencies:
+  - ```
+    npm install -D @playwright/test@latest
+    npx playwright install --with-deps
+    ```
+- To run E2E Tests:
+  - ```
+    npx playwright test --ui
+    ```
+  - The command will open a Playwright window which will allow you to press the Run button to execute tests.
