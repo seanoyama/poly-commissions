@@ -20,6 +20,11 @@ TE7: Testing
   functional and nonfunctional requirements. At the moment, we
   chose to focus on functional requirements and tested our API
   endpoints.
-- Dependencies = "npm install -D vitest", "npm install -D
-  supertest"
+- Unit tests use Jest in both the frontend and backend (frontend Jest converts TypeScript to JavaScript for testing)
+- Dependencies:
+  - "npm install -D vitest"
+  - "npm install -D supertest"
+  - "npm install --save-dev jest"
+  - "npm.cmd install -D -w react-frontend jest ts-jest @jest/globals"
 - Run backend tests with "npm run tests:run-backend"
+- Run unit tests in both react-frontend folder and express-backend folder with "npm run unit-test"
