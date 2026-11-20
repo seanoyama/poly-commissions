@@ -91,13 +91,15 @@ router.patch("/:id", async (req, res) => {
   }
 });
 
+// delete was throwing a 404 error when the test expects a 500 so i fixed it
 router.delete("/:id", async (req, res) => {
   try {
-    const { data: user } = await supabase
+    const { data: user, error: lookupError } = await supabase
       .from("users")
       .select("id")
       .eq("id", req.params.id)
       .maybeSingle();
+    if (lookupError) throw lookupError;
     if (!user) return notFound(res);
 
     const { error } = await supabase.auth.admin.deleteUser(

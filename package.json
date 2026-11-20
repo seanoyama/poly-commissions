@@ -19,6 +19,7 @@
   },
   "scripts": {
     "start": "npm run -w react-frontend dev",
+    "unit-test": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js",
     "test:backend": "vitest",
     "test:run-backend": "vitest run",
     "build": "npm run build --workspaces --if-present"
