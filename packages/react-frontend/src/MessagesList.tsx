@@ -13,15 +13,6 @@ type Message = {
   created_at: string;
 };
 
-type User = {
-    id: string;
-    name: string;
-    email: string;
-    phone: string;
-    on_campus: boolean;
-    created_at: string;
-}
-
 export default function MessagesList(props: any) {
   const chat_id = props.chat_id;
   const refreshKey = props.refreshKey;

@@ -65,6 +65,7 @@ export default function ChatForm({
 
     return (
         <form onSubmit={handleSubmit}>
+        {error && <p className="error-message">{error}</p>}
         <label>Create Chat: </label>
         <button type="submit" disabled={isSubmitting || !user_one || !user_two || !post_id}>
             {isSubmitting ? "Creating..." : "Create"}

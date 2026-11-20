@@ -41,7 +41,7 @@ export default function SinglePost(props:any) {
       .catch((err: Error) => {
         console.log(err);
       });
-  }, []);
+  }, [refreshKey]);
   console.log(post?.images[0]);
   return (
     
