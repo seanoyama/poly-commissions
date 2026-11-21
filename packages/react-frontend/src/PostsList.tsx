@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import Checkout from "./paypal";
+// import Checkout from "./paypal";
 import { API_URL } from "./constants"
 
 type Post = {
