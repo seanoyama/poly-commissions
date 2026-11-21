@@ -2,6 +2,7 @@
 
 module.exports = {
   testEnvironment: "node",
+  roots: ["<rootDir>/src/unit-tests"],
   extensionsToTreatAsEsm: [".ts", ".tsx"],
   transform: {
     "^.+\\.tsx?$": [
