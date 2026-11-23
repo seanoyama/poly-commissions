@@ -18,11 +18,12 @@ export default function ChatsList(props: any) {
   const refreshKey = props.refreshKey;
   // url variable in case we go #public
   // let API_URL = "http://localhost:8000";
-  let url = `${API_URL}/chats`;
-    console.log(user);
-    if (user) {
-      url += `?user=${encodeURIComponent(user?.id)}`;
-    }
+  if (!session || !user)
+    return <div>Please log in to view your messages.</div>;
+  let url = `${API_URL}/chats?user=${encodeURIComponent(user?.id)}`;
+    // if (user) {
+    //   url += `?user=${encodeURIComponent(user?.id)}`;
+    // }
     console.log(url);
   
   const [chats, setChats] = useState<Chat[]>([]);
@@ -31,7 +32,6 @@ export default function ChatsList(props: any) {
 
   useEffect(() => {
     
-
     setLoading(true);
     setError("");
 
@@ -53,8 +53,7 @@ export default function ChatsList(props: any) {
       });
   }, [chat_id, refreshKey]);
 
-  if (!session || !user)
-    return <div>Please log in to view your messages.</div>;
+  
 
   return (
     <div>

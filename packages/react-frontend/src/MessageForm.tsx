@@ -18,7 +18,7 @@ type MessageFormProps = {
   onMessageSent: () => void;
 };
 
-const url = API_URL+"messages";
+const url = `${API_URL}/messages`;
 
 export default function MessageForm({
   chat_id,
