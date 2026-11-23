@@ -52,3 +52,79 @@ using Supabase Auth.
       ```
     - The command will open a Playwright window which will allow
       you to press the Run button to execute tests.
+
+**Test-Driven Development (TDD) Example**
+
+The TDD process was used in refining our date conversion function that inputs a string in ISO format, and outputs a string that is more readable. This is primarily used for displaying timestamps for individual messages in a chat.
+
+**Red 1**: Wrote a failing test. A basic test that fails as the dateWithTime function is yet to exist in the project.
+
+```
+test("dateWithTime function", () => { 
+
+  expect(dateWithTime("")).toBe(""); 
+
+})
+```
+
+**Green 1**: Made basic test work; constructed the framework of the dateWithTime function that returns an empty string as expected.
+```
+export function dateWithTime(props: any){ 
+
+    return ""; 
+
+} 
+```
+ 
+**Red 2**: Wrote new failing test; specified an actual timestamp input that is more realistic than an empty string.
+```
+test("dateWithTime function", () => { 
+
+  expect(dateWithTime("")).toBe(""); 
+  expect(dateWithTime("2025-01-15T12:00:00Z")).toBe("01/15/2025 12:00 PM"); 
+
+}) 
+```
+ 
+**Green 2**: Wrote a basic test that works specifically for the given input.
+```
+export function dateWithTime(props: any){ 
+    if(props.iso_string){ 
+        return "01/15/2025 12:00 PM"; 
+    } 
+    return ""; 
+} 
+```
+
+**Red 3**: Write new failing tests using unique inputs to ensure function works not only case-by-case. Replaced previous unit tests with tests that have valid inputs and outputs for new expectations. 
+```
+test("dateWithTime function", () => { 
+
+  expect(DateWithTime({ 
+    iso_string: "2026-11-17 22:55:11.463782+00" 
+    })) 
+  .toBe("11/17/2026, 2:55 PM"); 
+
+  expect(DateWithTime({ 
+    iso_string: "2026-11-23T07:35:01.625Z" 
+  }))
+  .toBe("11/22/2026, 11:35 PM"); 
+}) 
+```
+ 
+**Green/Blue 3**: Final working DateWithTime function. There was major refactoring since the last Red/Green cycle, as it now utilizes the ISO format and the Intl.DateTimeFormat functions. 
+```
+export function DateWithTime(props: any){ 
+
+    const date = new Date(props.iso_string); 
+    let formatted_date = new Intl.DateTimeFormat( 
+        undefined, { 
+            year: "numeric", month: "numeric",  
+            day: "numeric", hour: "numeric",  
+            minute: "numeric", hour12: true 
+        } 
+    ).format(date); 
+
+    return formatted_date; 
+}
+```

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import {UserName} from "./services/userData";
-import {ReadableDate} from "./services/dateConverter";
+import {ReadableDate, DateWithTime} from "./services/dateConverter";
 import {API_URL} from "./constants"
 
 type Message = {
@@ -62,7 +62,7 @@ export default function MessagesList(props: any) {
       <section className="posts-list-grid">
         {messages.map((message) => (
           <div>
-            <ReadableDate iso_string={(message.created_at)}/> <br></br>
+            <DateWithTime iso_string={(message.created_at)}/> <br></br>
             <UserName uuid={(message.user_id)} /> :
             <br></br>
              {message.body}
