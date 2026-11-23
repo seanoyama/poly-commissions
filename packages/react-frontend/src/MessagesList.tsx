@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import {UserName} from "./services/userData";
-import {ReadableDate, DateWithTime} from "./services/dateConverter";
+import {DateWithTime} from "./services/dateConverter";
 import {API_URL} from "./constants"
 
 type Message = {
